@@ -24,7 +24,9 @@
       "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement?action=replenishment&market=0&from=st_iis_12_19&agreement=45068&amount=255.55"
     }
     function fireDeeplink(platform) {
+      Console.log('before fired ' + window.deeplinks[platform]);
       window.location = window.deeplinks[platform];
+      Console.log('after fired');
     }
   </script>
 </head>
