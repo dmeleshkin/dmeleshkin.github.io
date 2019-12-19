@@ -21,7 +21,8 @@
       "ios": "sberbankonline://brokerage/agreement/robo/open?action=create&from=catalog",
       "android": "android-app://ru.sberbankmobile/brokerage/agreement/robo?action=create&from=catalog",
       "android_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement/robo?action=create&from=marketplace_invest",
-      "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement?action=replenishment&market=0&from=st_iis_12_19&agreement=45068&amount=255.55"
+      "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement?action=replenishment&market=0&from=st_iis_12_19&agreement=45068&amount=255.55",
+      "payment_ios": "sberbankonline://brokerage/agreement?action=replenishment&market=0&from=st_iis_12_19&agreement=45068&amount=255.55"
     }
     function fireDeeplink(platform) {
       window.location = window.deeplinks[platform];
@@ -33,5 +34,6 @@
     <div class="banner" onclick="fireDeeplink('ios');">[iOS] Покупка модельного портфеля на новый робо-счёт</div>
     <div class="banner" onclick="fireDeeplink('android_alpha');">[Android] Покупка модельного портфеля на новый робо-счёт</div>
     <div class="banner" onclick="fireDeeplink('payment_alpha');">[Android] Проверка пополнения для Алины</div>
+    <div class="banner" onclick="fireDeeplink('payment_ios');">[Android] Проверка пополнения iOS для Алины</div>
 </body>
 </html>
