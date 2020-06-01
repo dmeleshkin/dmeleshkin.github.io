@@ -21,10 +21,10 @@
       "ios": "sberbankonline://brokerage/agreement/robo/open?action=create&from=catalog",
       "android": "android-app://ru.sberbankmobile/brokerage/agreement/robo?action=create&from=catalog",
       "android_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement/robo?action=create&from=marketplace_invest",
-      "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement?action=replenishment&market=0&from=st_iis_12_19&agreement=45068&amount=255.55",
-      "payment_ios": "sberbankonline://brokerage/agreement?action=replenishment&market=0&from=st_iis_12_19&agreement=45068&amount=255.55",
-      "payment_a_prom": " android-app://ru.sberbankmobile/brokerage/agreement?action=replenishment&market=0&from=test&agreement=482CP",
-      "payment_i_prom": "sberbankonline://brokerage/agreement?action=replenishment&market=0&from=st_iis_12_19&agreement=45068&amount=255.55"
+      "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/brokertransfer?agreement=4563B&exchangeMarket=FX&from=test_market",
+      "payment_alpha_noacc": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/brokertransfer?exchangeMarket=FX&from=test_market",
+      "payment_ios": "sberbankonline://brokerage/brokertransfer?agreement=4563B&exchangeMarket=FX&from=test_market",
+      "payment_ios_noacc": "sberbankonline://brokerage/brokertransfer?exchangeMarket=FX&from=test_market"
     }
     function fireDeeplink(platform) {
       window.location = window.deeplinks[platform];
@@ -35,9 +35,9 @@
 <body id="documentation">
     <div class="banner" onclick="fireDeeplink('ios');">[iOS] Покупка модельного портфеля на новый робо-счёт</div>
     <div class="banner" onclick="fireDeeplink('android_alpha');">[Android] Покупка модельного портфеля на новый робо-счёт</div>
-    <div class="banner" onclick="fireDeeplink('payment_alpha');">[Android] Проверка пополнения для Алины</div>
-    <div class="banner" onclick="fireDeeplink('payment_ios');">[iOS] Проверка пополнения для Алины</div>
-    <div class="banner" onclick="fireDeeplink('payment_a_prom');">[Android] Проверка пополнения для Жени</div>
-    <!--div class="banner" onclick="fireDeeplink('payment_i_prom');">[iOS] Проверка пополнения для Жени</div-->
+    <div class="banner" onclick="fireDeeplink('payment_ios');">IOS Онлайн пополнение</div>
+    <div class="banner" onclick="fireDeeplink('payment_ios_noacc');">IOS Онлайн пополнение без счёта</div>
+    <div class="banner" onclick="fireDeeplink('payment_alpha');">Android Онлайн пополнение</div>
+    <div class="banner" onclick="fireDeeplink('payment_alpha_noacc');">Android Онлайн пополнение без счёта</div>
 </body>
 </html>
