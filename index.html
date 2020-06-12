@@ -24,7 +24,8 @@
       "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/brokertransfer?agreement=4563B&exchangeMarket=FX&from=test_market",
       "payment_alpha_noacc": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/brokertransfer?exchangeMarket=FX&from=test_market",
       "payment_ios": "sberbankonline://brokerage/brokertransfer?agreement=4563B&exchangeMarket=FX&from=test_market",
-      "payment_ios_noacc": "sberbankonline://brokerage/brokertransfer?exchangeMarket=FX&from=test_market"
+      "payment_ios_noacc": "sberbankonline://brokerage/brokertransfer?exchangeMarket=FX&from=test_market",
+      "android_alpha_sortop": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement/short?action=create&from=marketPlace"
     }
     function fireDeeplink(platform) {
       window.location = window.deeplinks[platform];
@@ -39,5 +40,7 @@
     <div class="banner" onclick="fireDeeplink('payment_ios_noacc');">IOS Онлайн пополнение без счёта</div>
     <div class="banner" onclick="fireDeeplink('payment_alpha');">Android Онлайн пополнение</div>
     <div class="banner" onclick="fireDeeplink('payment_alpha_noacc');">Android Онлайн пополнение без счёта</div>
+    <div class="banner" onclick="fireDeeplink('android_alpha_sortop');">Android[alpha] Короткое открытие без параметров</div>
+  
 </body>
 </html>
