@@ -20,7 +20,7 @@
     window.deeplinks = {
       "ios": "sberbankonline://brokerage/agreement/robo/open?action=create&from=catalog",
       "android": "android-app://ru.sberbankmobile/brokerage/agreement/robo?action=create&from=catalog",
-      "android_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement/robo?action=create&from=marketplace_invest",
+      "android_offpay": "android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/agreement?action=replenishment&market=0&from=topup_ba&agreement=43ZDF&amount=10000",
       "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/transfer?agreement=4563B&exchangeMarket=FX&from=test_market",
       "payment_alpha_noacc": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/transfer?exchangeMarket=FX&from=test_market",
       "payment_ios": "sberbankonline://brokerage/transfer?agreement=4563B&exchangeMarket=FX&from=test_market",
@@ -40,7 +40,7 @@
 
 <body id="documentation">
     <div class="banner" onclick="fireDeeplink('ios');">[iOS] Покупка модельного портфеля на новый робо-счёт</div>
-    <div class="banner" onclick="fireDeeplink('android_alpha');">[Android] Покупка модельного портфеля на новый робо-счёт</div>
+    <div class="banner" onclick="fireDeeplink('android_offpay');">[Android] Оффлайн пополнение</div>
     <div class="banner" onclick="fireDeeplink('payment_ios');">IOS Онлайн пополнение</div>
     <div class="banner" onclick="fireDeeplink('payment_ios_noacc');">IOS Онлайн пополнение без счёта</div>
     <div class="banner" onclick="fireDeeplink('payment_alpha');">Android Онлайн пополнение</div>
