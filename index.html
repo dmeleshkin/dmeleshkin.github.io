@@ -18,7 +18,7 @@
   </style>
   <script type="text/javascript">
     window.deeplinks = {
-      "ios": "sberbankonline://brokerage/agreement/robo/open?action=create&from=catalog",
+      "trade_buy": "https://online.sberbank.ru/app/brokerage/trading/buy?from=marketPlay&secCode=RU000A0ZYUJ0",
       "android": "android-app://ru.sberbankmobile/brokerage/agreement/robo?action=create&from=catalog",
       "android_offpay": "android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/agreement?action=replenishment&market=0&from=topup_ba&agreement=43ZDF&amount=10000",
       "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/transfer?agreement=4563B&exchangeMarket=FX&from=test_market",
@@ -39,7 +39,7 @@
 </head>
 
 <body id="documentation">
-    <div class="banner" onclick="fireDeeplink('ios');">[iOS] Покупка модельного портфеля на новый робо-счёт</div>
+    <div class="banner" onclick="fireDeeplink('trade_buy');">Покупка облигаций</div>
     <div class="banner" onclick="fireDeeplink('android_offpay');">[Android] Оффлайн пополнение</div>
     <div class="banner" onclick="fireDeeplink('payment_ios');">IOS Онлайн пополнение</div>
     <div class="banner" onclick="fireDeeplink('payment_ios_noacc');">IOS Онлайн пополнение без счёта</div>
