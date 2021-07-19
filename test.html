@@ -35,9 +35,26 @@
     function fireDeeplink(platform) {
       window.location = window.deeplinks[platform];
     }
-    function goPay() {
-      console.log("pay");
+    function goPay(platform) {
       var txt = document.getElementById("agreementId").value;
+      var err =  = document.getElementById("invalidMessage");
+      if (!txt || txt.length < 5|) {
+          err.visible = 1;
+          return;
+      }
+      err.visible = 0;
+      
+      switch (platform) {
+        case 0:
+          console.log("Android");
+          breake;
+        case 1:
+          console.log("iOS");
+          breake;
+        default:
+          console.log("AppLink");
+      }              
+
       console.log(txt);
     }
   </script>
@@ -47,7 +64,9 @@
   <form action="javascript:void(0)">
     <p><b>Номер догоаора:</b></p>
     <p><input id="agreementId" type="text" maxlength="7" value="" size="10" placeholder="agreement"/></p>
-    <p><input type="button" value="Пополнить на Android" onclick="goPay()/></p>
+    <p><span style="color=#ff0000;visible=false" id="invalidMessage">Номер договора должен содержать от 5 до 7 символов</span></p>
+    <p> </p>
+    <p><input type="button" value="Пополнить на Android" onclick="goPay(0)"/><input type="button" value="Скопировать" onclick="goPay()"/></p>
   </form>
 </body>
 </html>
