@@ -1,0 +1,53 @@
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <title>Симулятор инвестиционной витрины</title>
+  <style type="text/css">
+    .banner {
+      color: white;
+      background-color: green;
+      font-size: 32;
+      width: 400;
+      text-align: center;
+      padding: 40;
+      margin: 5;
+
+    }
+
+  </style>
+  <script type="text/javascript">
+    window.deeplinks = {
+      "trade_buy": "https://online.sberbank.ru/app/brokerage/trading/buy?from=marketPlay&secCode=RU000A0ZYUJ0",
+      "android": "android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/transfer?agreement=43ZDF&exchangeMarket=fond&from=pushtopup&paymentAmount=1&currency=RUB",
+      "android_offpay": "android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/agreement?action=replenishment&market=0&from=topup_ba&agreement=43ZDF&amount=10000",
+      "payment_alpha": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/transfer?agreement=4563B&exchangeMarket=FX&from=test_market",
+      "payment_alpha_noacc": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/transfer?exchangeMarket=FX&from=test_market",
+      "payment_ios": "sberbankonline://brokerage/transfer?agreement=4563B&exchangeMarket=FX&from=test_market",
+      "payment_ios_noacc": "sberbankonline://brokerage/transfer?exchangeMarket=FX&from=test_market",
+      "android_alpha_sortop": "android-app://ru.sberbankmobile/brokerage/agreement/short?action=create&from=marketPlace",
+      "android_alpha_oldcreate0": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement/open?create",
+      "ios_oldcreate0": "sberbankonline://brokerage/agreement/open?create",
+      "android_alpha_oldcreate1": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement/open?create&from=test",
+      "ios_oldcreate1": "sberbankonline://brokerage/agreement/open?create&from=test",
+      "android_alpha_iis_payment": "android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement?action=replenishment&market=0&from=push_iis_06_20&agreement=S3ZDF"
+    }
+    function fireDeeplink(platform) {
+      window.location = window.deeplinks[platform];
+    }
+    function goPay() {
+      console.log("pay");
+      var txt = document.getElementById("agreementId").value;
+      console.log(txt);
+    }
+  </script>
+</head>
+
+<body id="documentation">
+  <form action="javascript:void(0)" onsubmit="goPay()">
+    <p><b>Номер догоаора:</b></p>
+    <p><input id="agreementId" type="text" maxlength="7" value="" size="10" placeholder="agreement"/></p>
+    <p><input type="submit" value="Пополнить"/></p>
+  </form>
+</body>
+</html>
