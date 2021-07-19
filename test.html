@@ -36,13 +36,13 @@
       window.location = window.deeplinks[platform];
     }
     function goPay(platform) {
-      var txt = document.getElementById("agreementId").value;
-      var err =  = document.getElementById("invalidMessage");
+      var agreementId = document.getElementById("agreementId").value;
+      var invalidMessage = document.getElementById("invalidMessage");
       if (!txt || txt.length < 5|) {
-          err.visible = 1;
+          err.style.display = "block";
           return;
       }
-      err.visible = 0;
+      err.style.display = "none";
       
       switch (platform) {
         case 0:
