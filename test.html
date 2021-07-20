@@ -5,7 +5,20 @@
   <title>Тест пополнения фондового рынка</title>
   
   <script type="text/javascript">
+    var fields = [];
+    
+    function validateAgreement() {
+      return true;
+    }
 
+    function validateFrom() {
+      return true;
+    }
+    
+    function validateAmount() {
+      return true;
+    }
+    
     function getLink(platform) {
       var agreementId = document.getElementById("agreementId").value;
       var invalidMessage = document.getElementById("invalidMessage");
@@ -44,15 +57,47 @@
       }
     }
     
+    function onAmountEnabledChanged() {
+
+      var checked = document.getElementsByName("AmountEnabled")[0].checked;
+      var box = document.getElementById("AmountEnabledBox");
+      if (box)
+        box.style.display = checked ? "block" : "none";
+
+    }
+    
   </script>
 </head>
 
 <body id="documentation">
   <form action="javascript:void(0)">
-    <p><b>Номер догоаора:</b></p>
-    <p><input id="agreementId" type="text" maxlength="7" value="" size="10" placeholder="agreement"/></p>
-    <p><span style="color:#ff0000;display:none;" id="invalidMessage">Номер договора должен содержать от 5 до 7 символов</span></p>
-    <p> </p>
+    <div id="fields">
+    </div>
+    
+    <p><b>Договор:</b>&nbsp;<input id="argAgreement" type="text" maxlength="7" value="" size="10" placeholder="agreement"/></p>
+    <p><span style="color:#ff0000;display:none;" id="errAgreement">Номер договора должен содержать от 5 до 7 символов</span></p>
+    
+    <p><b>Источник:</b>&nbsp;<input id="argFrom" type="text" maxlength="120" value="" size="30" placeholder="from"/></p>
+    <p><span style="color:#ff0000;display:none;" id="errFrom">Поле не должно быть пустым. Если Вы не знаете, как его заполнить, обратитесь к Мелешкину Дмитрию</span></p>
+
+    <p><b>Торговая площадка:</b><Br>
+      <input type="radio" name="argExchangeMarket" value="FOND" checked> Фондовый<Br>
+      <input type="radio" name="argExchangeMarket" value="FX"> Валютный<Br>
+      <input type="radio" name="argExchangeMarket" value="FORTS"> Срочный<Br>
+      <input type="radio" name="argExchangeMarket" value="OTC"> Внебиржевой<Br>
+    </p>
+    
+    <p><input type="checkbox" name="AmountEnabled" value="checkbox" checked onchange="onAmountEnabledChanged(this)"/>&nbsp;<b>Указать сумму</b></p>
+    <div id="AmountEnabledBox" style="padding-left: 24px;">
+      <b>Сумма:</b>&nbsp;<input id="argPaymentAmount" type="number" maxlength="10" value="" size="10" placeholder="paymentAmount"/>
+      <p><span style="color:#ff0000;display:none;" id="errSumm">Введите сумму платежа от 1 до 1 000 000 000 или снимите флаг "Указать сумму"</span></p>
+      <p>
+        <input type="radio" name="argCurrency" value="RUB" checked> Рубли<Br>
+        <input type="radio" name="argCurrency" value="USD"> Доллары США<Br>
+        <input type="radio" name="argCurrency" value="EUR"> Евро<Br>
+      </p>      
+    </div>
+      
     <p><input type="button" value="Пополнить на Android" onclick="goPay(0)"/><input type="button" value="Скопировать" onclick="copyToClipboard(0)"/></p>
     <p><input type="button" value="Пополнить на iOS" onclick="goPay(1)"/><input type="button" value="Скопировать" onclick="copyToClipboard(1)"/></p>
     <p><input type="button" value="Пополнить через AppLink" onclick="goPay(2)"/><input type="button" value="Скопировать" onclick="copyToClipboard(2)"/></p>
