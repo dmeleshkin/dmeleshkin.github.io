@@ -1,0 +1,185 @@
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <title>Тест пополнения фондового рынка</title>
+
+  <script type="text/javascript">
+    var fields = [];
+
+    function validateAgreement(args) {
+      var errMessage = document.getElementById("errAgreement");
+      if (!args.agreement || args.agreement.length < 5) {
+        errMessage.style.display = "block";
+        return false;
+      }
+      errMessage.style.display = "none";
+      return true;
+    }
+
+    function validateFrom(args) {
+      var errMessage = document.getElementById("errFrom");
+      if (!args.from) {
+        errMessage.style.display = "block";
+        return false;
+      }
+      errMessage.style.display = "none";
+      return true;
+    }
+
+    function validateAmount(args) {
+      var errMessage = document.getElementById("errSumm");
+      if (args.amountEnabled && !args.paymentAmount && Number(args.paymentAmount) < 1) {
+        errMessage.style.display = "block";
+        return false;
+      }
+      errMessage.style.display = "none";
+      return true;
+    }
+
+    function getRadioValue(name) {
+      var v = null;
+      document.getElementsByName(name).forEach(function (market) {
+        if (market.checked)
+          v = market.value;
+      });
+      return v;
+    }
+
+    function getPlatformPrefix(platform) {
+      switch (platform) {
+        case 0:
+          return "android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/";
+        case 1:
+          return "sberbankonline://";
+        default:
+          return "https://online.sberbank.ru/app/";
+      }
+    }
+
+    function getLink(platform) {
+      var args = {
+        "agreement": document.getElementById("argAgreement").value,
+        "exchangeMarket": getRadioValue("argExchangeMarket"),
+        "from": document.getElementById("argFrom").value,
+        "amountEnabled": document.getElementById("AmountEnabled").checked,
+        "paymentAmount": document.getElementById("argPaymentAmount").value,
+        "currency": getRadioValue("argCurrency")
+      };
+
+      if (!(validateAgreement(args) && validateFrom(args) && validateAmount(args)))
+        return "";
+
+      if (!args.amountEnabled) {
+        delete (args.paymentAmount);
+        delete (args.currency);
+      }
+      delete (args.amountEnabled);
+
+      return getPlatformPrefix(platform) + "brokerage/transfer?" + Object.keys(args).map(arg => arg + "=" + args[arg]).join("&");
+    }
+
+    function goPay(platform) {
+      var link = getLink(platform);
+      if (link) {
+        window.location = link;
+      }
+    }
+
+    function fallbackCopyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Fallback: Copying text command was ' + msg);
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function copyTextToClipboard(text) {
+      if (!navigator.clipboard) {
+        fallbackCopyTextToClipboard(text);
+        return;
+      }
+
+      navigator.clipboard.writeText(text).then(function () {
+        console.log('Async: Copying to clipboard was successful!');
+      }, function (err) {
+        console.error('Async: Could not copy text: ', err);
+      });
+    }
+
+    function copyToClipboard(platform) {
+      var link = getLink(platform);
+      if (link) {
+        copyTextToClipboard(link);
+      }
+    }
+
+    function onAmountEnabledChanged() {
+      var checked = document.getElementsByName("AmountEnabled")[0].checked;
+      var box = document.getElementById("AmountEnabledBox");
+      if (box)
+        box.style.display = checked ? "block" : "none";
+    }
+
+  </script>
+</head>
+
+<body id="documentation">
+  <form action="javascript:void(0)">
+    <p><b>Договор:</b>&nbsp;<input id="argAgreement" type="text" maxlength="7" value="" size="10"
+        placeholder="agreement" /></p>
+    <p><span style="color:#ff0000;display:none;" id="errAgreement">Номер договора должен содержать от 5 до 7
+        символов</span></p>
+
+    <p><b>Источник:</b>&nbsp;<input id="argFrom" type="text" maxlength="120" value="" size="30" placeholder="from" />
+    </p>
+    <p><span style="color:#ff0000;display:none;" id="errFrom">Поле не должно быть пустым. Если Вы не знаете, как его
+        заполнить, обратитесь к Мелешкину Дмитрию</span></p>
+
+    <p><b>Торговая площадка:</b><Br>
+      <input type="radio" name="argExchangeMarket" value="FOND" checked> Фондовый<Br>
+      <input type="radio" name="argExchangeMarket" value="FX"> Валютный<Br>
+      <input type="radio" name="argExchangeMarket" value="FORTS"> Срочный<Br>
+      <input type="radio" name="argExchangeMarket" value="OTC"> Внебиржевой<Br>
+    </p>
+
+    <p><input type="checkbox" id="AmountEnabled" name="AmountEnabled" value="checkbox" checked
+        onchange="onAmountEnabledChanged(this)" />&nbsp;<b>Указать сумму</b></p>
+    <div id="AmountEnabledBox" style="padding-left: 24px;">
+      <b>Сумма:</b>&nbsp;<input id="argPaymentAmount" name="argPaymentAmount" type="number" maxlength="10" value=""
+        size="10" placeholder="paymentAmount" />
+      <p><span style="color:#ff0000;display:none;" id="errSumm">Введите сумму платежа от 1 до 1 000 000 000 или снимите
+          флаг "Указать сумму"</span></p>
+      <p>
+        <input type="radio" name="argCurrency" value="RUB" checked> Рубли<Br>
+        <input type="radio" name="argCurrency" value="USD"> Доллары США<Br>
+        <input type="radio" name="argCurrency" value="EUR"> Евро<Br>
+      </p>
+    </div>
+
+    <p><input type="button" value="Пополнить на Android" onclick="goPay(0)" /><input type="button" value="Скопировать"
+        onclick="copyToClipboard(0)" /></p>
+    <p><input type="button" value="Пополнить на iOS" onclick="goPay(1)" /><input type="button" value="Скопировать"
+        onclick="copyToClipboard(1)" /></p>
+    <p><input type="button" value="Пополнить через AppLink" onclick="goPay(2)" /><input type="button"
+        value="Скопировать" onclick="copyToClipboard(2)" /></p>
+  </form>
+</body>
+
+</html>
