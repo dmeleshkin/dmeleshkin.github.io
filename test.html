@@ -20,6 +20,9 @@
     }
     
     function getLink(platform) {
+      if (!(validateAgreement() && validateFrom() && validateAmount()))
+        return "";
+
       var agreementId = document.getElementById("agreementId").value;
       var invalidMessage = document.getElementById("invalidMessage");
       if (!agreementId || agreementId.length < 5) {
@@ -70,7 +73,6 @@
 </head>
 
 <body id="documentation">
-<a href="android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/transfer?agreement=43ZDF&exchangeMarket=FOND&from=pushtopup&paymentAmount=1&currency=RUB" >test</a>
   <form action="javascript:void(0)">
     <div id="fields">
     </div>
